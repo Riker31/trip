@@ -125,7 +125,7 @@ export default function Home() {
             ← Previous
           </button>
           <button
-            onClick={() => setActiveDay(Math.min(ITINERARY.length - 1, activeDay + 1))}
+            onClick={() => setActiveDay(Math.min(itinerary.length - 1, activeDay + 1))}
             disabled={activeDay === itinerary.length - 1}
             className="px-4 py-2 bg-white/10 rounded-lg text-sm disabled:opacity-30 hover:bg-white/20 transition"
           >
