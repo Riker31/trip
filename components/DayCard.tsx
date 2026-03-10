@@ -7,7 +7,7 @@ type Day = {
   location: string;
   hotel: string;
   transport: string;
-  activities: string[];
+  activities: string | string[];
   notes: string;
   emoji: string;
 };
@@ -112,17 +112,23 @@ export default function DayCard({ day, dayIndex, userName }: { day: Day; dayInde
                 <p className="text-sm text-white/90">{day.transport}</p>
               </div>
             )}
-            {day.activities.length > 0 && (
+            {day.activities && (
               <div>
                 <p className="text-xs text-emerald-400 uppercase tracking-wider mb-2">📍 Activities</p>
-                <ul className="space-y-1.5">
-                  {day.activities.map((a, i) => (
-                    <li key={i} className="text-sm text-white/90 flex gap-2">
-                      <span className="text-emerald-500 mt-0.5">•</span>
-                      <span>{a}</span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="max-h-64 overflow-y-auto pr-1">
+                  {Array.isArray(day.activities) ? (
+                    <ul className="space-y-1.5">
+                      {day.activities.map((a, i) => (
+                        <li key={i} className="text-sm text-white/90 flex gap-2">
+                          <span className="text-emerald-500 mt-0.5">•</span>
+                          <span>{a}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="text-sm text-white/90 leading-relaxed whitespace-pre-wrap">{day.activities}</p>
+                  )}
+                </div>
               </div>
             )}
             {day.notes && (

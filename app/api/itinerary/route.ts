@@ -25,11 +25,7 @@ export async function GET() {
         hotel: row[2] || "",
         laundry: row[3] || "",
         transport: row[4] || "",
-        activities: (row[5] || "")
-          .split(/[.\n]|(?<=\w{4,})\.\s/)
-          .map((a: string) => a.trim())
-          .filter((a: string) => a.length > 3)
-          .slice(0, 8),
+        activities: row[5] || "",
         notes: row[6] || "",
         packing: row[7] || "",
         emoji: EMOJIS[i] || "📍",
