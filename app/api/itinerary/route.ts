@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { ITINERARY } from "@/lib/itinerary";
 
 const SHEET_ID = "1rm07ANbJVkAM3u-I7eL4LTnctwaakzFjKmHoRcukeFg";
 const API_KEY = process.env.GOOGLE_API_KEY;
@@ -36,6 +37,7 @@ export async function GET() {
 
     return NextResponse.json(days);
   } catch (err: any) {
-    return NextResponse.json({ error: err.message }, { status: 500 });
+    // Fallback to hardcoded itinerary if Sheets API fails
+    return NextResponse.json(ITINERARY);
   }
 }
